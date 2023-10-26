@@ -31,7 +31,7 @@ export const statisticsCardsData = [
   },
   {
     color: "green",
-    icon: UserIcon,
+    icon: BuildingStorefrontIcon,
     title: "Novos estabelecimentos hoje",
     value: "12",
     footer: {
