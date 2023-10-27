@@ -11,9 +11,9 @@ import {
 interface IHighlightContainer {
   title: string;
   color: any;
-  icon: any;
-  value: any;
-  footer: any;
+  icon: React.ReactNode;
+  value: string | number;
+  footer: string | number | React.ReactNode;
 }
 
 function HighlightContainer({

@@ -30,7 +30,7 @@ export const statisticsCardsData = [
     },
   },
   {
-    color: "green",
+    color: "gray",
     icon: BuildingStorefrontIcon,
     title: "Novos estabelecimentos hoje",
     value: "12",
