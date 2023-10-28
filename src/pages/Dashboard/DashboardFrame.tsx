@@ -8,7 +8,7 @@ import { Typography } from "@material-tailwind/react";
 function Dash(): JSX.Element {
   return (
     <>
-      <div className="highlights-wrapper">
+      <div className="highlights-wrapper animate-fade-in-down">
         {statisticsCardsData.map(({ icon, title, footer, ...rest }) => (
           <HighlightContainer
             key={title}

@@ -2,13 +2,14 @@ import React from "react";
 import { Button } from "@material-tailwind/react";
 import { Plus, UserPlus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { UserTable } from "../../components/UserTable";
 
 function Users(): JSX.Element {
   const navigate = useNavigate();
 
   return (
     <>
-      <div className="w-full h-full bg-deep-orange-600">
+      <div className="w-full h-full animate-fade-in-down">
         <div className="w-full h-12 flex flex-row-reverse ">
           <Button
             className="flex items-center gap-3 bg-purple mr-4"
@@ -19,7 +20,9 @@ function Users(): JSX.Element {
           </Button>
         </div>
 
-        <h1>Users</h1>
+        <div className="mt-6">
+          <UserTable />
+        </div>
       </div>
     </>
   );

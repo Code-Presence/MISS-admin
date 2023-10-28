@@ -1,4 +1,4 @@
-import { PencilIcon } from "@heroicons/react/24/solid";
+import { EyeIcon } from "lucide-react";
 import {
   ArrowDownTrayIcon,
   MagnifyingGlassIcon,
@@ -8,17 +8,12 @@ import {
   CardHeader,
   Typography,
   CardBody,
-  Chip,
   CardFooter,
   Avatar,
+  Input,
+  Button,
   IconButton,
   Tooltip,
-  Input,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
-  Button,
 } from "@material-tailwind/react";
 
 const TABLE_HEAD = [
@@ -37,6 +32,7 @@ import Team3 from "../assets/mocks/team-3-800x800.jpg";
 import Team4 from "../assets/mocks/team-4-470x470.png";
 import { CircularPagination } from "./Pagination";
 import { EditMenuTable } from "./EditMenuTable";
+import { useNavigate } from "react-router-dom";
 
 const TABLE_ROWS = [
   {
@@ -51,7 +47,8 @@ const TABLE_ROWS = [
   },
 ];
 
-export function UserTable() {
+export function EstablishmentTable() {
+  const navigate = useNavigate();
   return (
     <Card className="h-full w-full">
       <CardHeader floated={false} shadow={false} className="rounded-none">
@@ -190,6 +187,13 @@ export function UserTable() {
                       </div>
                     </td>
                     <td className={classes}>
+                      <Tooltip content="Vizualizar">
+                        <IconButton
+                          onClick={() => navigate("/establishment/record")}
+                        >
+                          <EyeIcon />
+                        </IconButton>
+                      </Tooltip>
                       <EditMenuTable />
                     </td>
                   </tr>
