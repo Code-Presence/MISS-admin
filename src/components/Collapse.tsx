@@ -20,9 +20,13 @@ export function MenuWithSearchInput() {
 
   const bgColor = copy ? "bg-beauty-green" : "bg-beauty-green-light";
 
+  const [email, setEmail] = React.useState("");
+  const onChange = ({ target }: any) => setEmail(target.value);
+
   return (
     <>
       <Menu
+        placement="bottom-start"
         dismiss={{
           itemPress: false,
         }}
@@ -33,15 +37,30 @@ export function MenuWithSearchInput() {
         <MenuList>
           {/* @ts-ignore */}
           <Input
-            size="lg"
-            label="Enviar por email"
-            icon={<Mail size={14} />}
-            className="w-72"
+            size="md"
+            type="email"
+            label="Email"
+            value={email}
+            onChange={onChange}
+            className="pr-20 w-72"
+            containerProps={{
+              className: "min-w-0",
+            }}
           />
+          <Button
+            size="sm"
+            color={email ? "gray" : "blue-gray"}
+            disabled={!email}
+            className="!absolute right-4 top-4 rounded"
+          >
+            Convidar
+          </Button>
+
+          <hr className="my-3" />
 
           <Button
             className={`${bgColor} flex items-center gap-3 w-72 mt-4`}
-            size="lg"
+            size="md"
             onClick={handleCopyToClipboard}
           >
             {copy ? (
