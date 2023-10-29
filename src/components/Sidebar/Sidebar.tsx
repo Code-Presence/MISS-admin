@@ -100,7 +100,7 @@ export function SidebarItem({ icon, text, active, alert, path }: any) {
         <div
           className={`
           absolute left-full rounded-md px-2 py-1 ml-6
-          bg-purple-light text-purple text-sm z-10 shadow-lg
+          bg-beauty-purple-light text-beauty-purple text-sm z-10 shadow-lg
           invisible -translate-x-3 transition-all
           group-hover:visible group-hover:opacity-100 group-hover:translate-x-0
       `}

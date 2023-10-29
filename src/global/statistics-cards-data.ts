@@ -13,7 +13,7 @@ export const statisticsCardsData = [
     title: "Movimentações de hoje",
     value: "R$ 1.700,00",
     footer: {
-      color: "text-green-500",
+      color: "text-beauty-green-500",
       value: "+55%",
       label: "do que na semana passada",
     },
@@ -24,7 +24,7 @@ export const statisticsCardsData = [
     title: "Novos clientes hoje",
     value: "35",
     footer: {
-      color: "text-green-500",
+      color: "text-beauty-green-500",
       value: "+3%",
       label: "do que no mês passado",
     },
@@ -46,7 +46,7 @@ export const statisticsCardsData = [
     title: "--",
     value: "--",
     footer: {
-      color: "text-green-500",
+      color: "text-beauty-green-500",
       value: "+5%",
       label: "--",
     },

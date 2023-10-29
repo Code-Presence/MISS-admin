@@ -44,7 +44,7 @@ function Breadcrumbs() {
         <Link to={`/${convertedURL}`} className="text-decoration-none pl-1">
           {" "}
           <p
-            className={`${color} ${weight} text-sm hover:bg-purple-light px-1 rounded-sm`}
+            className={`${color} ${weight} text-sm hover:bg-beauty-purple-light px-2 rounded-sm`}
           >
             {title}
           </p>
@@ -56,7 +56,7 @@ function Breadcrumbs() {
   return (
     <>
       <ol className="flex flex-row items-center justify-center rounded-sm list-none ">
-        <li className="breadcrumb-item hover:bg-purple-light px-2">
+        <li className="breadcrumb-item hover:bg-beauty-purple-light px-2 rounded-sm">
           <Link
             to="/dashboard"
             className={`text-decoration-none ${

@@ -154,7 +154,7 @@ export function EstablishmentTable() {
                     </td>
                     <td className={classes}>
                       <div className="flex items-center space-x-2">
-                        <div className="w-3 h-3 bg-green rounded-full" />
+                        <div className="w-3 h-3 bg-beauty-green rounded-full" />
                         <span>ativo</span>
                       </div>
                     </td>

@@ -4,12 +4,13 @@ import Sidebar, { SidebarItem } from "../Sidebar/Sidebar";
 import { Routes, Route } from "react-router-dom";
 import { Dash } from "../../pages/Dashboard/DashboardFrame";
 import RedirectComponent from "../RedirectComponent";
-import { Establishment } from "../../pages/Establishment/Establishments";
-import { Register } from "../../pages/Establishment/Register";
 import { Breadcrumbs } from "../Breadcrumbs";
-import { UserRegister } from "../../pages/Users/UserRegister/UserRegister";
 import { Users } from "../../pages/Users/Users";
-import { EstablishmentRecord } from "../../pages/Establishment/Record";
+import { UserRegister } from "../../pages/Users/UserRegister/UserRegister";
+
+import { Establishment } from "../../pages/Establishment/List/Establishments";
+import { EstablishmentRecord } from "../../pages/Establishment/Record/EstablishmentRecord";
+import { EstablishmentRegister } from "../../pages/Establishment/Register/EstablishmentRegister";
 
 function Dashboard(): JSX.Element {
   return (
@@ -36,7 +37,10 @@ function Dashboard(): JSX.Element {
             <Route path="/" element={<RedirectComponent />} />
             <Route path="/dashboard" element={<Dash />} />
             <Route path="/establishments" element={<Establishment />} />
-            <Route path="/establishment/register" element={<Register />} />
+            <Route
+              path="/establishment/register"
+              element={<EstablishmentRegister />}
+            />
             <Route
               path="/establishment/record"
               element={<EstablishmentRecord />}

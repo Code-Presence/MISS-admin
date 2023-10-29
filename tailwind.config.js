@@ -12,12 +12,14 @@ export default withMT({
       colors: {
         'border-gray': '#c4c4c460',
         'background': '#f5f3f4',
-        'green': '#02AF7B',
-        'purple': '#7B69D5',
-        'purple-light': '#CAC3EE',
+        'beauty-green': '#02AF7B',
+        'beauty-green-dark': '#55AE64',
+        'beauty-green-light': '#87DD95',
+        'beauty-purple': '#7B69D5',
+        'beauty-purple-light': '#CAC3EE',
       },
       textColor: {
-        'purple': '#2A234C',
+        'beauty-purple': '#2A234C',
         
       },
       keyframes: {

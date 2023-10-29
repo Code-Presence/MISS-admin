@@ -7,14 +7,14 @@ import {
   IconButton,
   Tooltip,
 } from "@material-tailwind/react";
-import { PencilIcon } from "lucide-react";
+import { MoreVertical, PencilIcon } from "lucide-react";
 
 function EditMenuTable() {
   return (
     <Menu>
       <MenuHandler>
-        <IconButton className="bg-purple">
-          <PencilIcon className="h-4 w-4" />
+        <IconButton className="bg-beauty-purple">
+          <MoreVertical />
         </IconButton>
       </MenuHandler>
       <MenuList>

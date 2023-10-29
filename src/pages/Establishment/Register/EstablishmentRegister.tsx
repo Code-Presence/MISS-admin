@@ -1,6 +1,6 @@
 import React from "react";
 
-function Register(): JSX.Element {
+function EstablishmentRegister(): JSX.Element {
   return (
     <>
       <div className="w-full h-full bg-white border rounded-lg shadow-lg p-4">
@@ -10,4 +10,4 @@ function Register(): JSX.Element {
   );
 }
 
-export { Register };
+export { EstablishmentRegister };

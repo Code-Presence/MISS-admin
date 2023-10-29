@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .container {
+      @apply w-full h-full animate-fade-in-down rounded-lg shadow-lg bg-white p-4 border border-border-gray
+    }
+    .header {
+      @apply w-full rounded-md p-4 border flex gap-4
+    }
+    .user-wrapper {
+        @apply mt-4
+    }
+    /* 
+    .xxx {
+      @apply 
+    }
+    .xxxx {
+      @apply 
+    } */
+  }
+
+  /*   */

@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@material-tailwind/react";
 import { Plus, UserPlus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { UserTable } from "../../components/UserTable";
+import { UserTable } from "../../components/UserTable/UserTable";
 
 function Users(): JSX.Element {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function Users(): JSX.Element {
       <div className="w-full h-full animate-fade-in-down">
         <div className="w-full h-12 flex flex-row-reverse ">
           <Button
-            className="flex items-center gap-3 bg-purple mr-4"
+            className="flex items-center gap-3 bg-beauty-purple mr-4"
             onClick={() => navigate("/user/register")}
           >
             <UserPlus size={20} />
@@ -21,7 +21,7 @@ function Users(): JSX.Element {
         </div>
 
         <div className="mt-6">
-          <UserTable />
+          <UserTable showSearch={true} />
         </div>
       </div>
     </>
