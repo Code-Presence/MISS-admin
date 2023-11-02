@@ -23,9 +23,9 @@ function EstablishmentRegister(): JSX.Element {
           stepOneDescription="Dados do proprietário"
           stepTwoTitle="Estabelecimento"
           stepTwoDescription="Dados do estabelecimento"
+          mt={"4"}
         >
           <div className="box-border h-full w-full overflow-hidden">
-            <div className="gap-4 flex flex-col pt-2">{/* <StepOne /> */}</div>
             <div className="h-full gap-4 flex flex-col pt-2">
               {currentStep == 1 ? <StepOne /> : <StepTwo />}
             </div>

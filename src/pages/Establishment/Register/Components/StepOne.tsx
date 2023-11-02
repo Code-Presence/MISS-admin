@@ -64,7 +64,7 @@ function StepOne(): JSX.Element {
 
   return (
     <div className="grid lg:grid-cols-2 gap-x-4 animate-fade-in-down">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 border-r pr-4">
         <div id="nome">
           <FormLabel content="Nome" isMandatory={true} />
           {/* @ts-ignore */}
@@ -148,7 +148,7 @@ function StepOne(): JSX.Element {
 
       <div>
         <Typography variant="h5" className="mb-4">
-          Endereço
+          Endereço Residencial
         </Typography>
         <div id="address" className="flex flex-col gap-4">
           {/* @ts-ignore */}

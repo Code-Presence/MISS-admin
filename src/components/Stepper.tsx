@@ -13,6 +13,7 @@ interface IStepperWithContentProps {
   stepOneDescription: string;
   stepTwoTitle: string;
   stepTwoDescription: string;
+  mt?: string;
 }
 
 export function StepperWithContent({
@@ -22,6 +23,7 @@ export function StepperWithContent({
   stepOneDescription,
   stepTwoTitle,
   stepTwoDescription,
+  mt,
 }: IStepperWithContentProps) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isLastStep, setIsLastStep] = React.useState(false);
@@ -42,7 +44,9 @@ export function StepperWithContent({
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-between py-4">
+    <div
+      className={`w-full h-full flex flex-col justify-between py-4 mt-${mt}`}
+    >
       <div className="w-full px-24">
         <Stepper
           activeStep={activeStep}
