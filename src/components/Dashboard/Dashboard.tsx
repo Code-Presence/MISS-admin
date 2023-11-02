@@ -1,16 +1,18 @@
 import React from "react";
 import { LayoutDashboard, Warehouse, User } from "lucide-react";
-import Sidebar, { SidebarItem } from "../Sidebar/Sidebar";
-import { Routes, Route } from "react-router-dom";
-import { Dash } from "../../pages/Dashboard/DashboardFrame";
-import RedirectComponent from "../RedirectComponent";
-import { Breadcrumbs } from "../Breadcrumbs";
-import { Users } from "../../pages/Users/Users";
-import { UserRegister } from "../../pages/Users/UserRegister/UserRegister";
 
-import { Establishment } from "../../pages/Establishment/List/Establishments";
-import { EstablishmentRecord } from "../../pages/Establishment/Record/EstablishmentRecord";
-import { EstablishmentRegister } from "../../pages/Establishment/Register/EstablishmentRegister";
+import { Breadcrumbs, RedirectComponent, Sidebar, SidebarItem } from "../index";
+
+import { Routes, Route } from "react-router-dom";
+
+import {
+  Dash,
+  Users,
+  UserRegister,
+  Establishment,
+  EstablishmentRecord,
+  EstablishmentRegister,
+} from "../../pages";
 
 function Dashboard(): JSX.Element {
   return (

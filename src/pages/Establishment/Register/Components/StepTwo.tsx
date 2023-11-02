@@ -2,34 +2,49 @@ import React from "react";
 import { FormLabel } from "../../../../components/FormLabel";
 import { Input, Typography } from "@material-tailwind/react";
 
-function StepOne(): JSX.Element {
+function StepTwo(): JSX.Element {
   const [birthday, setBirthday] = React.useState<string>("");
   const [number, setNumber] = React.useState<string>("");
   const [cpf, setCpf] = React.useState<string>("");
+  const [cnpj, setCnpj] = React.useState<string>("");
 
   const formattedNumber = number.replace(
     /^(\d{2})(\d)(\d{4})(\d{4})$/,
     "($1) $2 $3 $4"
   );
 
-  const formattedCPF = cpf.replace(
-    /^(\d{3})(\d{3})(\d{3})(\d{2})$/,
-    "$1.$2.$3-$4"
+  const formatCnpj = cnpj.replace(
+    /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/,
+    "$1.$2.$3/$4-$5"
   );
 
   return (
     <>
       <Typography variant="h5" className="mt-4">
-        Sócio Proprietário{" "}
+        Estabelecimento
       </Typography>
 
       <div id="nome">
-        <FormLabel content="Nome" isMandatory={true} />
+        <FormLabel content="Razão Social" isMandatory={true} />
         {/* @ts-ignore */}
         <Input
           minLength={5}
           size="lg"
-          placeholder="sócio fundador ou proprietário"
+          placeholder="Razão Social"
+          className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+          labelProps={{
+            className: "before:content-none after:content-none",
+          }}
+        />
+      </div>
+
+      <div id="nome">
+        <FormLabel content="Nome fantasia" isMandatory={true} />
+        {/* @ts-ignore */}
+        <Input
+          minLength={5}
+          size="lg"
+          placeholder="Nome da empresa"
           className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
           labelProps={{
             className: "before:content-none after:content-none",
@@ -38,40 +53,23 @@ function StepOne(): JSX.Element {
       </div>
 
       <div id="cpf">
-        <FormLabel content="CPF" isMandatory={true} />
+        <FormLabel content="CNPJ" isMandatory={true} />
         {/* @ts-ignore */}
         <Input
-          maxLength={11}
+          maxLength={14}
           size="lg"
-          placeholder="000.000.000-00"
+          placeholder="00.000.000/0000-00"
           className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
           labelProps={{
             className: "before:content-none after:content-none",
           }}
-          value={formattedCPF}
-          onChange={event => setCpf(event.target.value.replace(/[^0-9]/g, ""))}
-        />
-      </div>
-
-      <div id="birth">
-        <FormLabel content="Aniversário" isMandatory={true} />
-        {/* @ts-ignore */}
-        <Input
-          maxLength={8}
-          type="date"
-          size="lg"
-          placeholder="DD/MM/AAAA"
-          className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-          labelProps={{
-            className: "before:content-none after:content-none",
-          }}
-          value={birthday}
-          onChange={event => setBirthday(event.target.value)}
+          value={formatCnpj}
+          onChange={event => setCnpj(event.target.value.replace(/[^0-9]/g, ""))}
         />
       </div>
 
       <div id="email">
-        <FormLabel content="Email" />
+        <FormLabel content="Email da empresa" isMandatory={true} />
         {/* @ts-ignore */}
         <Input
           type="email"
@@ -84,7 +82,7 @@ function StepOne(): JSX.Element {
       </div>
 
       <div id="num">
-        <FormLabel content="Número" />
+        <FormLabel content="Número comercial" isMandatory={true} />
         {/* @ts-ignore */}
         <Input
           maxLength={11}
@@ -102,10 +100,10 @@ function StepOne(): JSX.Element {
       </div>
 
       <div id="address">
-        <p>Endereço</p>
+        <p>sede</p>
       </div>
     </>
   );
 }
 
-export { StepOne };
+export { StepTwo };
