@@ -5,6 +5,7 @@ import { EstablishmentTable } from './EstablishmentTable'
 import { FormLabel } from './FormLabel'
 import RedirectComponent from './RedirectComponent'
 import Sidebar, { SidebarItem } from './Sidebar/Sidebar'
+import { StepperWithContent as Stepper } from './Stepper'
 
 export { 
     Breadcrumbs, 
@@ -14,5 +15,6 @@ export {
     FormLabel, 
     RedirectComponent, 
     Sidebar, 
-    SidebarItem 
+    SidebarItem,
+    Stepper
 } 
