@@ -18,6 +18,7 @@ function FormLabel({ content, isMandatory }: IFormLabelProps): JSX.Element {
             mount: { scale: 1, y: 0 },
             unmount: { scale: 0, y: 25 },
           }}
+          className={"shadow-2xl"}
         >
           <Typography
             variant="small"

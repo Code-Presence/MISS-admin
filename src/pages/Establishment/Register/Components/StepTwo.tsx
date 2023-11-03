@@ -1,6 +1,7 @@
 import React from "react";
 import { FormLabel } from "../../../../components/FormLabel";
 import { Input, Typography } from "@material-tailwind/react";
+import { AddressForm } from "../../../../components/AddressForm";
 
 function StepTwo(): JSX.Element {
   const [birthday, setBirthday] = React.useState<string>("");
@@ -19,8 +20,8 @@ function StepTwo(): JSX.Element {
   );
 
   return (
-    <div className="grid lg:grid-cols-2 gap-x-2 animate-fade-in-down">
-      <div className="flex flex-col gap-4">
+    <div className="grid lg:grid-cols-2 gap-x-4 animate-fade-in-down">
+      <div className="flex flex-col gap-4 border-r pr-4">
         <div id="nome">
           <FormLabel content="Razão Social" isMandatory={true} />
           {/* @ts-ignore */}
@@ -98,10 +99,9 @@ function StepTwo(): JSX.Element {
           />
         </div>
       </div>
-      <div>
-        <div id="address">
-          <p>sede</p>
-        </div>
+
+      <div id="address">
+        <AddressForm title="Endereço Comercial" />
       </div>
     </div>
   );

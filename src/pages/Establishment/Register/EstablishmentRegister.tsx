@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Input, Typography } from "@material-tailwind/react";
 import { StepOne, StepTwo } from "./Components";
 import { Stepper } from "../../../components";
 
 function EstablishmentRegister(): JSX.Element {
   const [currentStep, setCurrentStep] = React.useState<number>(1);
+  const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
+
+  useEffect(() => {
+    setIsDisabled(true);
+  }, []);
 
   const handleStepChange = (newStep: number) => {
     setCurrentStep(newStep);
+  };
+
+  const handleEnableButton = () => {
+    setIsDisabled(false);
   };
 
   return (
@@ -24,10 +33,19 @@ function EstablishmentRegister(): JSX.Element {
           stepTwoTitle="Estabelecimento"
           stepTwoDescription="Dados do estabelecimento"
           mt={"4"}
+          // *
+          // TODO:
+          // isDisabled={isDisabled}
+          // *
+          isDisabled={false}
         >
           <div className="box-border h-full w-full overflow-hidden">
             <div className="h-full gap-4 flex flex-col pt-2">
-              {currentStep == 1 ? <StepOne /> : <StepTwo />}
+              {currentStep == 1 ? (
+                <StepOne disableStepButton={() => handleEnableButton()} />
+              ) : (
+                <StepTwo />
+              )}
             </div>
           </div>
         </Stepper>

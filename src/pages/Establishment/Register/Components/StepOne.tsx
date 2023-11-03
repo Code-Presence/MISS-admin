@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormLabel } from "../../../../components/FormLabel";
 import { Input, Typography } from "@material-tailwind/react";
+import { AddressForm } from "../../../../components/AddressForm";
 
-function StepOne(): JSX.Element {
+interface IStepOneProps {
+  disableStepButton?: (isDisabled: boolean) => void | null;
+}
+
+function StepOne({ disableStepButton }: IStepOneProps): JSX.Element {
   const [birthday, setBirthday] = React.useState<string>("");
   const [phone, setPhone] = React.useState<string>("");
   const [cpf, setCpf] = React.useState<string>("");
+  const [name, setName] = React.useState<string>("");
 
-  const [cep, setCep] = React.useState<string>("");
-  const [street, setStreet] = React.useState<string>("");
-  const [state, setState] = React.useState<string>("");
-  const [number, setNumber] = React.useState<string>("");
-  const [complement, setComplement] = React.useState<string>("");
-  const [neighborhood, setNeighborhood] = React.useState<string>("");
-  const [city, setCity] = React.useState<string>("");
+  const [isDisabled, setIsDisabled] = React.useState<boolean>(false);
 
-  const [isDisabled, setIsDisabled] = React.useState<boolean>(true);
+  const birhtdayYear = birthday.substring(0, 4);
+
+  const convertedBirthdayear = parseInt(birhtdayYear);
 
   const formattedPhone = phone.replace(
     /^(\d{2})(\d)(\d{4})(\d{4})$/,
@@ -27,40 +29,24 @@ function StepOne(): JSX.Element {
     "$1.$2.$3-$4"
   );
 
-  const formattedCEP = cep.replace(/^(\d{5})(\d{3})$/, "$1-$2");
-
-  React.useEffect(() => {
-    if (cep.length === 8) {
-      getAddress();
-    }
-  }, [cep]);
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCep(event.target.value.replace(/[^0-9]/g, ""));
+  const getYear = () => {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    return currentYear;
   };
 
-  const getAddress = async (): Promise<void> => {
-    const cepvalid = cep;
-
-    if (cepvalid?.length !== 8) {
-      return;
-    } else {
-      setIsDisabled(false);
+  useEffect(() => {
+    if (
+      (name.length >= 5 && cpf.length == 11 && birthday.charAt(0) == "1") ||
+      birthday.charAt(0) == "2"
+    ) {
+      if (getYear() - convertedBirthdayear >= 18) {
+        setIsDisabled(true);
+        // @ts-ignore
+        disableStepButton(isDisabled);
+      }
     }
-
-    await fetch(`https://viacep.com.br/ws/${cepvalid}/json/`)
-      .then(res => res.json())
-      .then(data => {
-        if (data === undefined) {
-          return;
-        }
-        setCep(`${data.cep}`);
-        setStreet(`${data.logradouro}`);
-        setNeighborhood(`${data.bairro}`);
-        setState(data.uf);
-        setCity(data.localidade);
-      });
-  };
+  }, [name, cpf, birthday]);
 
   return (
     <div className="grid lg:grid-cols-2 gap-x-4 animate-fade-in-down">
@@ -76,6 +62,8 @@ function StepOne(): JSX.Element {
             labelProps={{
               className: "before:content-none after:content-none",
             }}
+            value={name}
+            onChange={event => setName(event.target.value)}
           />
         </div>
 
@@ -147,80 +135,7 @@ function StepOne(): JSX.Element {
       </div>
 
       <div>
-        <Typography variant="h5" className="mb-4">
-          Endereço Residencial
-        </Typography>
-        <div id="address" className="flex flex-col gap-4">
-          {/* @ts-ignore */}
-          <Input
-            maxLength={8}
-            label="CEP"
-            size="lg"
-            value={formattedCEP}
-            onChange={event => {
-              handleChange(event);
-            }}
-          />
-          <div className="grid grid-cols-2 gap-x-2">
-            {/* @ts-ignore */}
-            <Input
-              label="Rua"
-              size="lg"
-              value={street}
-              onChange={e => setStreet(e.target.value)}
-              disabled={isDisabled}
-            />
-            {/* @ts-ignore */}
-            <Input
-              label="Bairro"
-              size="lg"
-              value={neighborhood}
-              onChange={e => setNeighborhood(e.target.value)}
-              disabled={isDisabled}
-            />
-          </div>
-          <div className="grid grid-flow-row-dense grid-cols-3 gap-x-2">
-            {/* <div className="bg-black flex items-start"> */}
-            <div>
-              {/* @ts-ignore */}
-              <Input
-                label="Número"
-                size="lg"
-                disabled={isDisabled}
-                value={number}
-                onChange={e => setNumber(e.target.value.replace(/[^0-9]/g, ""))}
-              />
-            </div>
-            <div className="col-span-2">
-              {/* @ts-ignore */}
-              <Input
-                label="Complemento"
-                size="lg"
-                disabled={isDisabled}
-                value={complement}
-                onChange={e => setComplement(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-x-2">
-            {/* @ts-ignore */}
-            <Input
-              label="Cidade"
-              size="lg"
-              value={city}
-              onChange={e => setCity(e.target.value)}
-              disabled={isDisabled}
-            />
-            {/* @ts-ignore */}
-            <Input
-              label="UF"
-              size="lg"
-              value={state}
-              onChange={e => setState(e.target.value)}
-              disabled={isDisabled}
-            />
-          </div>
-        </div>
+        <AddressForm title="Endereço Residencial" isMandatory={true} />
       </div>
     </div>
   );

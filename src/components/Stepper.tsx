@@ -1,5 +1,11 @@
 import React, { Children } from "react";
-import { Stepper, Step, Button, Typography } from "@material-tailwind/react";
+import {
+  Stepper,
+  Step,
+  Button,
+  Typography,
+  Tooltip,
+} from "@material-tailwind/react";
 import {
   CogIcon,
   UserIcon,
@@ -14,8 +20,8 @@ interface IStepperWithContentProps {
   stepTwoTitle: string;
   stepTwoDescription: string;
   mt?: string;
+  isDisabled?: boolean;
 }
-
 export function StepperWithContent({
   children,
   onStepChange,
@@ -24,6 +30,7 @@ export function StepperWithContent({
   stepTwoTitle,
   stepTwoDescription,
   mt,
+  isDisabled,
 }: IStepperWithContentProps) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isLastStep, setIsLastStep] = React.useState(false);
@@ -92,11 +99,28 @@ export function StepperWithContent({
       <div className="h-full mt-24 border rounded-md p-4">{children}</div>
       <div className="mt-4 flex justify-between">
         <Button onClick={handlePrev} disabled={isFirstStep}>
-          Prev
+          Voltar
         </Button>
-        <Button onClick={handleNext} disabled={isLastStep}>
-          Next
-        </Button>
+        {isDisabled ? (
+          <Tooltip
+            content="Preencha os campos obrigatórios"
+            placement="left-start"
+            animate={{
+              mount: { scale: 1, y: 0 },
+              unmount: { scale: 0, y: 25 },
+            }}
+          >
+            <div>
+              <Button onClick={handleNext} disabled={isDisabled}>
+                Próximo
+              </Button>
+            </div>
+          </Tooltip>
+        ) : (
+          <Button onClick={handleNext} disabled={false}>
+            Próximo
+          </Button>
+        )}
       </div>
     </div>
   );
