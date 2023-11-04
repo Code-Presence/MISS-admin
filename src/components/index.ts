@@ -6,6 +6,7 @@ import { FormLabel } from './FormLabel'
 import RedirectComponent from './RedirectComponent'
 import Sidebar, { SidebarItem } from './Sidebar/Sidebar'
 import { StepperWithContent as Stepper } from './Stepper'
+import { StatisticsChart } from './Charts'
 
 export { 
     Breadcrumbs, 
@@ -16,5 +17,6 @@ export {
     RedirectComponent, 
     Sidebar, 
     SidebarItem,
-    Stepper
+    Stepper,
+    StatisticsChart
 } 

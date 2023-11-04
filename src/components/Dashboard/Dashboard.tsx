@@ -34,7 +34,7 @@ function Dashboard(): JSX.Element {
         <nav className="w-full h-16 flex items-center pl-6 bg-white border">
           <Breadcrumbs />
         </nav>
-        <div className="p-6 w-full h-full">
+        <div className="p-6 w-full h-full overflow-hidden relative">
           <Routes>
             <Route path="/" element={<RedirectComponent />} />
             <Route path="/dashboard" element={<Dash />} />
