@@ -3,6 +3,7 @@ import { chartsConfig } from "../global/configs/charts-config";
 const websiteViewsChart = {
   type: "bar",
   height: 220,
+  widht: 30,
   series: [
     {
       name: "Views",

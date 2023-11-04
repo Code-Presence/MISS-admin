@@ -32,7 +32,7 @@ function EstablishmentRecord(): JSX.Element {
           </div>
         </div>
 
-        <div className={`${wrapper} pt-10 flex justify-between`}>
+        <div className={`pt-8 flex justify-between gap-4`}>
           {statisticsChartsData.map(props => (
             <StatisticsChart
               key={props.title}
