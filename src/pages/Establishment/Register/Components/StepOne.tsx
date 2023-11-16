@@ -50,7 +50,7 @@ function StepOne({ disableStepButton }: IStepOneProps): JSX.Element {
 
   return (
     <div className="grid lg:grid-cols-2 gap-x-4 animate-fade-in-down">
-      <div className="flex flex-col gap-4 border-r pr-4">
+      <div className="flex flex-col gap-4 border-r sm:border-none pr-4">
         <div id="nome">
           <FormLabel content="Nome" isMandatory={true} />
           {/* @ts-ignore */}

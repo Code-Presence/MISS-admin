@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { EyeIcon } from "lucide-react";
 import {
   ArrowDownTrayIcon,
@@ -51,24 +49,6 @@ const TABLE_ROWS = [
 
 export function EstablishmentTable() {
   const navigate = useNavigate();
-
-  const [establishments, setEstablishments] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/establishments');
-        setEstablishments(response.data);
-        console.log(establishments)
-      } catch (error) {
-        console.error('Erro ao buscar os dados', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  
   return (
     <Card className="h-full w-full">
       <CardHeader floated={false} shadow={false} className="rounded-none">
@@ -160,7 +140,7 @@ export function EstablishmentTable() {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        200
+                        {amount}
                       </Typography>
                     </td>
                     <td className={classes}>

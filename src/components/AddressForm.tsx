@@ -69,8 +69,9 @@ function AddressForm({ title, isMandatory }: IAddressFormProps): JSX.Element {
       </Tooltip>
 
       <div id="address" className="flex flex-col gap-4">
-        {/* @ts-ignore */}
+        
         <Input
+        crossOrigin={''}
           maxLength={8}
           label="CEP"
           size="lg"
@@ -80,16 +81,18 @@ function AddressForm({ title, isMandatory }: IAddressFormProps): JSX.Element {
           }}
         />
         <div className="grid grid-cols-2 gap-x-2">
-          {/* @ts-ignore */}
+          
           <Input
+crossOrigin={''}
             label="Rua"
             size="lg"
             value={street}
             onChange={e => setStreet(e.target.value)}
             disabled={isDisabled}
           />
-          {/* @ts-ignore */}
+          
           <Input
+crossOrigin={''}
             label="Bairro"
             size="lg"
             value={neighborhood}
@@ -99,8 +102,9 @@ function AddressForm({ title, isMandatory }: IAddressFormProps): JSX.Element {
         </div>
         <div className="grid grid-flow-row-dense grid-cols-3 gap-x-2">
           <div>
-            {/* @ts-ignore */}
+            
             <Input
+crossOrigin={''}
               label="Número"
               size="lg"
               disabled={isDisabled}
@@ -109,8 +113,9 @@ function AddressForm({ title, isMandatory }: IAddressFormProps): JSX.Element {
             />
           </div>
           <div className="col-span-2">
-            {/* @ts-ignore */}
+            
             <Input
+crossOrigin={''}
               label="Complemento"
               size="lg"
               disabled={isDisabled}
@@ -120,16 +125,18 @@ function AddressForm({ title, isMandatory }: IAddressFormProps): JSX.Element {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-x-2">
-          {/* @ts-ignore */}
+          
           <Input
+crossOrigin={''}
             label="Cidade"
             size="lg"
             value={city}
             onChange={e => setCity(e.target.value)}
             disabled={isDisabled}
           />
-          {/* @ts-ignore */}
+          
           <Input
+crossOrigin={''}
             label="UF"
             size="lg"
             value={state}
