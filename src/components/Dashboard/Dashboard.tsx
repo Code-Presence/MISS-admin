@@ -44,7 +44,7 @@ function Dashboard(): JSX.Element {
               element={<EstablishmentRegister />}
             />
             <Route
-              path="/establishment/record"
+              path="/establishment/record/:id"
               element={<EstablishmentRecord />}
             />
 

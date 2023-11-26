@@ -7,8 +7,75 @@ import statisticsChartsData from "../../../global/statistics-charts-data";
 import { StatisticsChart } from "../../../components";
 import { ClockIcon } from "lucide-react";
 import { container, wrapper } from "./styles";
+import { useParams } from "react-router-dom";
+
+interface IEstablishmentProps {
+  id: string;
+  name: string;
+  document: string;
+  phone: string;
+  rate?: string;
+  address: {
+    line1: string;
+    line2?: string;
+    line3?: string;
+    postalCode: string;
+    neighborhood?: string;
+    state: string;
+  };
+  createdBy?: string;
+  foundedAt?: Date;
+}
 
 function EstablishmentRecord(): JSX.Element {
+
+  const [establishment, setEstablishment] = React.useState<IEstablishmentProps | null>(null);
+
+  const { id } = useParams();
+
+  // React.useEffect(() => {
+  //   fetch(`http://localhost:3001/establishments/${id}`)
+  //     .then(response => response.json())
+  //     // .then(data => setEstablishment(data))
+  //     .then((data) => {
+  //       setEstablishment(data), 
+  //       console.log('auuu: ', establishment)
+  //     })
+  //     .catch(error => console.error('Erro ao buscar estabelecimento:', error));
+  // }, []);
+
+  // React.useEffect(() => {
+  //   fetch('http://localhost:3001/establishments/655523d7d8759e04b5435a44')
+  //     .then(response => {
+  //       if (!response.ok) {
+  //         throw new Error(`Erro HTTP: status ${response.status}`);
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((response) => 
+  //     {setEstablishment(response),
+  //     console.log(establishment)
+  //   }
+  //     )
+  //     .catch(error => console.error('Erro ao buscar estabelecimento:', error));
+  // }, []);
+  
+  React.useEffect(() => {
+    fetch(`http://localhost:3001/establishments/${id}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Erro HTTP: status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Dados recebidos:', data);
+        setEstablishment(data);
+      })
+      .catch(error => console.error('Erro ao buscar estabelecimento:', error));
+  }, []);
+  
+
   return (
     <>
       <div className={`${container}`}>
@@ -16,7 +83,9 @@ function EstablishmentRecord(): JSX.Element {
           <div className="h-48 w-48 bg-gray-200 rounded-sm" />
           <div className="h-full rounded-sm">
             <Typography variant="small">Estabelecimento:</Typography>
-            <Typography variant="h4">RC Hair</Typography>
+            <Typography variant="h4">
+            {establishment ? establishment.name : "Carregando..."}
+            </Typography>
             <div className="w-full flex gap-2">
               <EstablishmentChips />
             </div>

@@ -49,23 +49,35 @@ const TABLE_ROWS = [
   },
 ];
 
+interface IEstablishmentProps {
+  id: string;
+  name: string;
+  document: string;
+  phone: string;
+  address: {
+    line1: string;
+    line2: string;
+    line3: string;
+    postalCode: string;
+    neighborhood: string;
+    state: string;
+  };
+  foundedAt: string;
+}
+
+
 export function EstablishmentTable() {
+  const [establishments, setEstablishments] = useState<IEstablishmentProps[]>([]);
+
   const navigate = useNavigate();
 
-  const [establishments, setEstablishments] = useState([]);
+  // const [establishments, setEstablishments] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/establishments');
-        setEstablishments(response.data);
-        console.log(establishments)
-      } catch (error) {
-        console.error('Erro ao buscar os dados', error);
-      }
-    };
-
-    fetchData();
+    fetch('http://localhost:3001/establishments')
+      .then(response => response.json())
+      .then(data => setEstablishments(data))
+      .catch(error => console.error('Erro ao buscar dados:', error));
   }, []);
 
   
@@ -116,32 +128,21 @@ export function EstablishmentTable() {
             </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
-              (
-                {
-                  img,
-                  name,
-                  amount,
-                  date,
-                  status,
-                  account,
-                  accountNumber,
-                  expiry,
-                },
-                index
-              ) => {
-                const isLast = index === TABLE_ROWS.length - 1;
-                const classes = isLast
-                  ? "p-4"
-                  : "p-4 border-b border-blue-gray-50";
+          
+          {establishments.length > 0 ? (
+        establishments.map((establishment, index) => {
+          const isLast = index === establishments.length - 1;
+          const classes = isLast
+          ? "p-4"
+          : "p-4 border-b border-blue-gray-50";
 
-                return (
-                  <tr key={name}>
+          return (
+            <tr key={index}>
                     <td className={classes}>
                       <div className="flex items-center gap-3">
                         <Avatar
-                          src={img}
-                          alt={name}
+                          src={Logo1}
+                          alt={index.toString()}
                           size="md"
                           className="border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1"
                         />
@@ -150,34 +151,38 @@ export function EstablishmentTable() {
                           color="blue-gray"
                           className="font-bold"
                         >
-                          {name}
+                          {establishment.name}
                         </Typography>
                       </div>
                     </td>
+
                     <td className={classes}>
                       <Typography
                         variant="small"
                         color="blue-gray"
                         className="font-normal"
                       >
-                        200
+                        1000
                       </Typography>
                     </td>
+
                     <td className={classes}>
                       <Typography
                         variant="small"
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {date}
+                        10 / 2023
                       </Typography>
                     </td>
+
                     <td className={classes}>
                       <div className="flex items-center space-x-2">
                         <div className="w-3 h-3 bg-beauty-green rounded-full" />
                         <span>ativo</span>
                       </div>
                     </td>
+
                     <td className={classes}>
                       <div className="flex items-center gap-3">
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
@@ -206,20 +211,23 @@ export function EstablishmentTable() {
                         </td>
                       </div>
                     </td>
-                    <td className={classes}>
+
+                    <td className={`${classes} flex flec-row gap-4`}>
                       <Tooltip content="Vizualizar">
                         <IconButton
-                          onClick={() => navigate("/establishment/record")}
+                          onClick={() => navigate(`/establishment/record/${establishment.id}`)}
                         >
                           <EyeIcon />
                         </IconButton>
                       </Tooltip>
                       <EditMenuTable />
                     </td>
-                  </tr>
-                );
-              }
-            )}
+           </tr>
+          )
+        })
+      ) : (
+        <p>Carregando...</p>
+      )}
           </tbody>
         </table>
       </CardBody>
