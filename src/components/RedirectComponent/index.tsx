@@ -1,14 +1,19 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const RedirectComponent: React.FC = () => {
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    navigate("/dashboard");
-  }, []);
+interface IRedirectComponentProps {
+  path: string;
+}
 
-  return null; // Componente vazio, pois não precisa renderizar nada
-};
+function RedirectComponent({path}: IRedirectComponentProps) {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        navigate(`/${path}`);
+    }, []);
+
+    return null; // Componente vazio, pois não precisa renderizar nada
+}
 
 export default RedirectComponent;

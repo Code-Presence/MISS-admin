@@ -14,23 +14,25 @@ import {
 
 interface IStepperWithContentProps {
   children?: React.ReactNode;
-  onStepChange: (newStep: number) => void;
   stepOneTitle: string;
   stepOneDescription: string;
   stepTwoTitle: string;
   stepTwoDescription: string;
   mt?: string;
   isDisabled?: boolean;
+  onStepChange: (newStep: number) => void;
+  submitTrigger?: () => void;
 }
 export function StepperWithContent({
   children,
-  onStepChange,
   stepOneTitle,
   stepOneDescription,
   stepTwoTitle,
   stepTwoDescription,
   mt,
   isDisabled,
+  onStepChange,
+  submitTrigger,
 }: IStepperWithContentProps) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [isLastStep, setIsLastStep] = React.useState(false);
@@ -48,6 +50,17 @@ export function StepperWithContent({
       setActiveStep(cur => cur - 1);
       onStepChange(activeStep + 0);
     }
+  };
+
+  const submit = () => {
+    console.log("triggered");
+    submitTrigger();
+  };
+
+  const handleSubmit = () => {
+    console.log("Submit function called");
+    submit;
+    handleNext();
   };
 
   return (
@@ -117,7 +130,8 @@ export function StepperWithContent({
             </div>
           </Tooltip>
         ) : (
-          <Button onClick={handleNext} disabled={false}>
+          <Button onClick={handleSubmit.bind(this)} disabled={false}>
+          {/* <Button onClick={() => {handleNext; submit()}} disabled={false}> */}
             Próximo
           </Button>
         )}
