@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Button, Input, Typography } from '@material-tailwind/react';
+import { Button, Typography } from '@material-tailwind/react';
 import { StepOne, StepTwo } from './Components';
-import { Stepper } from '../../../components';
+import { useNavigate } from 'react-router-dom';
 
 function EstablishmentRegister(): JSX.Element {
     const [currentStep, setCurrentStep] = React.useState<number>(1);
@@ -28,6 +28,8 @@ function EstablishmentRegister(): JSX.Element {
         setIsDisabled(false);
     };
 
+    const navigate = useNavigate();
+
     return (
         <>
             <div className="w-full h-full bg-white p-4 overflow-hidden flex flex-col animate-fade-in-down">
@@ -46,7 +48,7 @@ function EstablishmentRegister(): JSX.Element {
 
                 </div>
                 <div className="bg-red-100 w-full justify-between flex">
-                    <Button disabled={false}>
+                    <Button disabled={false} onClick={() => navigate(-1)}>
                       Voltar
                     </Button>
 
