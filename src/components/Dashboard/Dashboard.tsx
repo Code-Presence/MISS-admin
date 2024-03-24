@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, Warehouse, User } from 'lucide-react';
+import { LayoutDashboard, Warehouse, User, Briefcase } from 'lucide-react';
 
 import { Breadcrumbs, RedirectComponent, Sidebar, SidebarItem } from '../index';
 
@@ -13,6 +13,8 @@ import {
     EstablishmentRecord,
     EstablishmentRegister,
 } from '../../pages';
+import Collaborators from '../../pages/Collaborators/List/Collaborators';
+import CollaboratorsRegister from '../../pages/Collaborators/Register/CollaboratorsRegister';
 
 function Dashboard(): JSX.Element {
     return (
@@ -27,6 +29,11 @@ function Dashboard(): JSX.Element {
                     icon={<Warehouse size={20} />}
                     text="Estabelecimentos"
                     path="establishments"
+                />
+                <SidebarItem
+                    icon={<Briefcase size={20} />}
+                    text="Colaboradores"
+                    path="collaborators"
                 />
                 <SidebarItem icon={<User size={20} />} text="Usuários" path="users" />
             </Sidebar>
@@ -54,6 +61,9 @@ function Dashboard(): JSX.Element {
 
                         <Route path="/users" element={<Users />} />
                         <Route path="/user/register" element={<UserRegister />} />
+
+                        <Route path="/collaborators" element={<Collaborators />} />
+                        <Route path="/collaborators/register" element={<CollaboratorsRegister />} />
                     </Routes>
                 </div>
             </div>

@@ -1,9 +1,10 @@
-import { Input, Tooltip, Typography } from '@material-tailwind/react';
+import { Input, Typography } from '@material-tailwind/react';
 import React from 'react';
 
 interface IAddressFormProps {
   title?: string;
-  isMandatory?: boolean;
+  titleLabelProps?: string;
+  currentStep?: number;
   onAddressChange: (addressData: IAddressProps) => void;
 }
 
@@ -17,7 +18,7 @@ export interface IAddressProps {
   city: string;
 }
 
-function AddressForm({ title, isMandatory, onAddressChange }: IAddressFormProps): JSX.Element {
+function AddressForm({ title, titleLabelProps, onAddressChange, currentStep }: IAddressFormProps): JSX.Element {
     const [cep, setCep] = React.useState<string>('');
     const [street, setStreet] = React.useState<string>('');
     const [state, setState] = React.useState<string>('');
@@ -79,19 +80,9 @@ function AddressForm({ title, isMandatory, onAddressChange }: IAddressFormProps)
 
     return (
         <>
-            <Tooltip
-                content="Campo obrigatório"
-                placement="left-start"
-                animate={{
-                    mount: { scale: 1, y: 0 },
-                    unmount: { scale: 0, y: 25 },
-                }}
-                className={'shadow-2xl'}
-            >
-                <Typography variant="h5" className="mb-4">
-                    {title} {isMandatory ? <></> : <>*</>}
-                </Typography>
-            </Tooltip>
+            <Typography variant="h5" className={titleLabelProps}>
+                {title} 
+            </Typography>
 
             <div id="address" className="flex flex-col gap-4">
         
@@ -101,6 +92,7 @@ function AddressForm({ title, isMandatory, onAddressChange }: IAddressFormProps)
                     label="CEP"
                     size="lg"
                     value={formattedCEP}
+                    disabled={currentStep == 1}
                     onChange={event => {
                         handleChange(event);
                     }}
@@ -113,7 +105,7 @@ function AddressForm({ title, isMandatory, onAddressChange }: IAddressFormProps)
                         size="lg"
                         value={street}
                         onChange={e => setStreet(e.target.value)}
-                        disabled={isDisabled}
+                        disabled={isDisabled || currentStep == 1}
                     />
           
                     <Input
@@ -122,7 +114,7 @@ function AddressForm({ title, isMandatory, onAddressChange }: IAddressFormProps)
                         size="lg"
                         value={neighborhood}
                         onChange={e => setNeighborhood(e.target.value)}
-                        disabled={isDisabled}
+                        disabled={isDisabled || currentStep == 1}
                     />
                 </div>
                 <div className="grid grid-flow-row-dense grid-cols-3 gap-x-2">
@@ -132,7 +124,7 @@ function AddressForm({ title, isMandatory, onAddressChange }: IAddressFormProps)
                             crossOrigin={''}
                             label="Número"
                             size="lg"
-                            disabled={isDisabled}
+                            disabled={isDisabled || currentStep == 1}
                             value={number}
                             onChange={e => setNumber(e.target.value.replace(/[^0-9]/g, ''))}
                         />
@@ -143,7 +135,7 @@ function AddressForm({ title, isMandatory, onAddressChange }: IAddressFormProps)
                             crossOrigin={''}
                             label="Complemento"
                             size="lg"
-                            disabled={isDisabled}
+                            disabled={isDisabled || currentStep == 1}
                             value={complement}
                             onChange={e => setComplement(e.target.value)}
                         />
@@ -157,7 +149,7 @@ function AddressForm({ title, isMandatory, onAddressChange }: IAddressFormProps)
                         size="lg"
                         value={city}
                         onChange={e => setCity(e.target.value)}
-                        disabled={isDisabled}
+                        disabled={isDisabled || currentStep == 1}
                     />
           
                     <Input
@@ -166,7 +158,7 @@ function AddressForm({ title, isMandatory, onAddressChange }: IAddressFormProps)
                         size="lg"
                         value={state}
                         onChange={e => setState(e.target.value)}
-                        disabled={isDisabled}
+                        disabled={isDisabled || currentStep == 1}
                     />
                 </div>
             </div>

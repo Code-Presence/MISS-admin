@@ -1,13 +1,13 @@
+import React from 'react';
+import { MenuWithSearchInput } from '../../../components/Collapse';
 import { Button } from '@material-tailwind/react';
 import { Plus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { MenuWithSearchInput } from '../../../components/Collapse';
-import { EstablishmentTable } from '../../../components/EstablishmentTable';
 
-function Establishment(): JSX.Element {
+function Collaborators(): JSX.Element {
     const navigate = useNavigate();
     const handlePress = () => {
-        navigate('/establishment/register');
+        navigate('/collaborators/register');
     };
 
     return (
@@ -16,19 +16,15 @@ function Establishment(): JSX.Element {
                 <MenuWithSearchInput />
 
                 <Button
-                    className="flex items-center gap-3 bg-beauty-purple mr-4"
+                    className="flex items-center gap-3 bg-deep-purple-400 mr-4"
                     onClick={handlePress}
                 >
                     <Plus size={20} />
-          Novo Estabelecimento
+          Novo Colaborador
                 </Button>
-            </div>
-
-            <div className="pt-6 animate-fade-in-down">
-                <EstablishmentTable />
             </div>
         </>
     );
 }
 
-export { Establishment };
+export default Collaborators;
